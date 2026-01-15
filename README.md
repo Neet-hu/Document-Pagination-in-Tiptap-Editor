@@ -1,76 +1,128 @@
-Tiptap Document Editor with Pagination (Prototype)
-Overview
+Document Pagination in Tiptap Editor
 
-This project is a Tiptap-based rich text editor designed to help legal professionals draft USCIS documents while visualizing how content will appear when printed.
+A Tiptap-based rich text editor with real-time visual pagination, designed to simulate how legal documents will appear when printed. This project is built as part of a software assignment to demonstrate pagination handling, DOM measurement, and editor customization using modern frontend tools.
 
-The editor focuses on:
+🚀 Objective
 
-Accurate page sizing and margins
+The goal of this project is to build a document editor that:
 
-Clear visual page boundaries
+Displays visual page boundaries while typing (similar to Google Docs / MS Word)
 
-Reliable print/PDF output
+Dynamically updates page breaks as content is added or removed
 
-Stable and predictable editing behavior
+Matches print output with standard paper size and margins
 
-This prototype demonstrates a practical approach to pagination within the constraints of Tiptap/ProseMirror.
+Handles common legal-document formatting requirements
 
-Features
+This is especially useful for drafting immigration-related legal documents where layout accuracy matters.
 
-✍️ Rich text editing using Tiptap
+🛠️ Tech Stack
 
-🧾 Visual page boundaries matching Letter size (8.5 × 11 inches)
+Framework: Next.js (App Router)
 
-📐 Standard 1-inch margins
+Editor: Tiptap (ProseMirror-based)
 
-🖨️ Print / Save as PDF with layout fidelity
+Styling: Tailwind CSS + custom CSS
 
-🔢 Page numbering
+Language: TypeScript
 
-🧰 Formatting support:
+Deployment-ready: Vercel / Netlify compatible
+
+✨ Features
+
+Real-time pagination based on rendered content height
+
+Letter/A4-style page layout with 1-inch margins
+
+Visual page separation with page numbers
+
+Supports:
 
 Headings
 
+Paragraphs
+
 Bold / Italic / Strike
 
-Bullet & ordered lists
+Bullet and numbered lists
 
-Undo / Redo
+Print / Save as PDF support using browser print
 
-Technology Stack
+Content reflows dynamically when editing mid-document
 
-Next.js (App Router)
+📐 Pagination Approach
 
-React
+Pagination is handled by:
 
-Tiptap
+Rendering the Tiptap editor content inside a fixed-width container
 
-Tailwind CSS
+Measuring the rendered .ProseMirror content height using the DOM
 
-TypeScript
+Dividing total content height by the usable page height (accounting for margins)
 
-Pagination Approach
-Core Idea
+Dynamically calculating the number of pages
 
-Tiptap (built on ProseMirror) maintains a single document tree for content editing.
-Instead of splitting the document into separate editable page nodes, this prototype:
-
-Renders the editor content in a single editable surface
-
-Measures the rendered content height in the DOM
-
-Calculates where page boundaries should occur based on:
-
-Page height (11 inches)
-
-Usable content height (after margins)
-
-Displays visual page boundaries that align exactly with print output
+Rendering page backgrounds and page numbers behind the editor
 
 This ensures:
 
-What users see on screen matches printed output
+Long paragraphs flow naturally across pages
 
-Editing remains stable and predictable
+Page count updates in real time
 
-Undo/redo history is preserved correctly
+What you see in the editor closely matches printed output
+
+⚠️ Trade-offs & Limitations
+
+Page breaks are visual, not actual content splits
+
+Tables and complex layouts may require additional tuning
+
+Header/footer support is not fully implemented
+
+Exact DOCX export parity is not included (print/PDF is accurate)
+
+🔮 Improvements with More Time
+
+True page-splitting using custom ProseMirror node views
+
+Header and footer editing support
+
+Better table pagination handling
+
+Export to DOCX with preserved pagination
+
+Performance optimizations for very large documents
+
+📦 Installation & Setup
+# Clone the repository
+git clone https://github.com/Neet-hu/Document-Pagination-in-Tiptap-Editor.git
+
+# Navigate to project folder
+cd tiptap-pagination
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+
+Open:
+
+http://localhost:3000
+
+
+Print & PDF
+
+Use the Print / Save as PDF button or browser print dialog.
+
+The printed output matches:
+
+Page size
+
+Margins
+
+Page breaks
+
+Page numbering
